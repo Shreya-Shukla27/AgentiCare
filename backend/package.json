@@ -1,0 +1,15 @@
+{
+  "name": "agenticare-backend",
+  "version": "1.0.0",
+  "description": "AgentiCare - Autonomous Financial Engagement Agent (SBI Hackathon @ GFF 2026 demo prototype)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}

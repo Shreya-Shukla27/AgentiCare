@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AgentiCare — Autonomous Financial Engagement Agent</title>
+<link rel="stylesheet" href="style.css" />
+
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">AC</div>
+      <div>
+        <h1>AgentiCare</h1>
+        <p>Autonomous Financial Engagement Agent · SBI Hackathon @ GFF 2026</p>
+      </div>
+    </div>
+    <nav class="nav" id="mainNav">
+      <a href="#dashboard" class="nav-link" data-page="dashboard">Dashboard</a>
+      <a href="#customers" class="nav-link" data-page="customers">Customers</a>
+      <a href="#triggers" class="nav-link" data-page="triggers">Triggers</a>
+      <a href="#architecture" class="nav-link" data-page="architecture">Architecture</a>
+      <a href="#about" class="nav-link" data-page="about">About</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- DASHBOARD PAGE -->
+    <section class="page" id="page-dashboard">
+      <div class="page-heading">
+        <div>
+          <h2>Live Decision Feed</h2>
+          <p class="muted">Real-time view of the agent's reasoning, guardrail checks, and executed actions.</p>
+        </div>
+        <button id="simulateBtn" class="primary-btn">Run Agent Cycle</button>
+      </div>
+
+      <section class="stats" id="statsRow"></section>
+
+      <div class="feed-header">
+        <span id="lastRun" class="muted"></span>
+      </div>
+      <div id="feed" class="feed-grid"></div>
+    </section>
+
+    <!-- CUSTOMERS PAGE -->
+    <section class="page" id="page-customers" hidden>
+      <div class="page-heading">
+        <div>
+          <h2>Customer Signal Data</h2>
+          <p class="muted">Raw mock data ingested by the agent — the "Signal Ingestion" stage of the pipeline.</p>
+        </div>
+      </div>
+      <div id="customersTableWrap" class="table-wrap"></div>
+    </section>
+
+    <!-- TRIGGERS PAGE -->
+    <section class="page" id="page-triggers" hidden>
+      <div class="page-heading">
+        <div>
+          <h2>Engagement Triggers</h2>
+          <p class="muted">Three high-value, low-risk triggers included in this pilot — new triggers plug in without touching the core agent.</p>
+        </div>
+      </div>
+      <div class="trigger-grid">
+        <div class="trigger-card dark">
+          <div class="trigger-icon">⚠️</div>
+          <h3>Dormancy Reactivation</h3>
+          <p>Detects declining activity and low balances; sends a timely, personalised reactivation nudge before full dormancy sets in.</p>
+          <div class="trigger-meta">Channel: Push notification</div>
+        </div>
+        <div class="trigger-card mid">
+          <div class="trigger-icon">🐷</div>
+          <h3>FD/RD Maturity Cross-sell</h3>
+          <p>Flags upcoming maturities and proactively offers renewal or a better-fit investment product, timed to the maturity window.</p>
+          <div class="trigger-meta">Channel: In-app offer</div>
+        </div>
+        <div class="trigger-card light">
+          <div class="trigger-icon">👛</div>
+          <h3>EMI-Proximity Support</h3>
+          <p>Identifies cash-flow stress ahead of EMI due dates and offers relevant support — reminders, top-up options, or advisory nudges.</p>
+          <div class="trigger-meta">Channel: In-app offer / push</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARCHITECTURE PAGE -->
+    <section class="page" id="page-architecture" hidden>
+      <div class="page-heading">
+        <div>
+          <h2>Process Flow & Architecture</h2>
+          <p class="muted">Six-stage pipeline from raw signal to compliant, personalised action.</p>
+        </div>
+      </div>
+      <div class="pipeline">
+        <div class="pipeline-group">
+          <span class="group-label">Sense</span>
+          <div class="pipeline-steps">
+            <div class="pipeline-step"><span class="step-num">1</span><h4>Signal Ingestion</h4><p>Transaction & account event stream</p></div>
+            <div class="pipeline-step"><span class="step-num">2</span><h4>State Evaluation</h4><p>Pattern & threshold check</p></div>
+          </div>
+        </div>
+        <div class="pipeline-group">
+          <span class="group-label">Decide</span>
+          <div class="pipeline-steps">
+            <div class="pipeline-step"><span class="step-num">3</span><h4>Agent Reasoning</h4><p>LLM prioritises next-best-action</p></div>
+            <div class="pipeline-step"><span class="step-num">4</span><h4>Compliance Guardrail</h4><p>Deterministic rule validation</p></div>
+          </div>
+        </div>
+        <div class="pipeline-group">
+          <span class="group-label">Act & Learn</span>
+          <div class="pipeline-steps">
+            <div class="pipeline-step"><span class="step-num">5</span><h4>Action Execution</h4><p>Dispatch via Yono channel</p></div>
+            <div class="pipeline-step"><span class="step-num">6</span><h4>Feedback Loop</h4><p>Outcome logged, model refines</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="guardrail-callout">
+        <strong>Guardrail:</strong> deterministic compliance checks sit between reasoning and execution — every AI-driven action is validated before it reaches the customer.
+      </div>
+    </section>
+
+    <!-- ABOUT PAGE -->
+    <section class="page" id="page-about" hidden>
+      <div class="page-heading">
+        <div>
+          <h2>About This Project</h2>
+          <p class="muted">SBI Hackathon @ GFF 2026 — Focus Area: Digital Engagement (Pillar 03)</p>
+        </div>
+      </div>
+      <div class="about-content">
+        <p>AgentiCare is an autonomous agentic AI engine for continuous customer engagement, built as a working demo prototype for the SBI Hackathon. Instead of relying on static, manually configured campaigns, it continuously evaluates customer behavioural signals, autonomously reasons over candidate actions, validates decisions against compliance guardrails, and simulates dispatching a personalised nudge — all without a human designing every trigger by hand.</p>
+        <p><strong>Team:</strong> Team AgentiCare</p>
+        <p><strong>Tech stack:</strong> Node.js, Express, vanilla JS dashboard, rule-based reasoning engine (designed as a stand-in for an LLM-based reasoning layer in production).</p>
+        <p><a href="https://github.com/Shreya-Shukla27/AgentiCare" target="_blank" rel="noopener">View source on GitHub →</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
